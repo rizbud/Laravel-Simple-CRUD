@@ -23,7 +23,7 @@ class Controller extends BaseController
         ]);
     }
 
-    public function listResponse($data, $request) {
+    public function listResponse($data, $request, $list = null) {
         if ($data) {
             return response()->json([
                 'response' => [
@@ -31,7 +31,7 @@ class Controller extends BaseController
                     'message' => 'OK',
                     'url' => $request->fullUrl()
                 ],
-                'data' => $data->toArray()['data']
+                'data' => $list ?: $data->toArray()['data']
             ])->withHeaders([
                 'Total' => $data->toArray()['total'],
                 'Page' => $data->toArray()['current_page'],
