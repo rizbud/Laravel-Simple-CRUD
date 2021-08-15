@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/', function(Request $request) {
+    return response()->json([
+        'response' => [
+            'status' => 200,
+            'message' => getMessage(200),
+            'url' => $request->fullUrl()
+        ],
+        'data' => [
+            'message' => 'Root'
+        ]
+    ], 200);
 });
